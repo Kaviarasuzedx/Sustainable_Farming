@@ -26,7 +26,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # ─── AI Chat Assistant Config ────────────────────
-API_KEY = "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"
+API_KEY = "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"
 API_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODEL_NAME = "mistralai/mistral-7b-instruct"
 
