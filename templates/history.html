@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Prediction History - FarmAssist</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fdfdfd;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: #ffffff;
+            border-right: 1px solid #e0e0e0;
+            height: 100vh;
+            padding: 20px;
+        }
+        .sidebar h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .sidebar h1 i {
+            margin-right: 10px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .sidebar ul li a:hover, .sidebar ul li a.active {
+            background-color: #e0f7fa;
+            color: #00796b;
+        }
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .top-bar .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .top-bar .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .top-bar .user-info i {
+            font-size: 20px;
+            color: #333;
+        }
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #4caf50;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #4caf50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #4caf50;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .tab-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .tab-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #e0f7fa;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        .tab-button.active {
+            background-color: #4caf50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h1>🌱 FarmAssist</h1>
+            <ul>
+                <li><a href="/"><i class="fas fa-tachometer-alt"></i>  Dashboard</a></li>
+                <li><a href="{{ url_for('crop_adviser') }}"><i class="fas fa-seedling"></i>  Crop Advisor</a></li>
+                <li>
+                    <a href="{{ url_for('Farm_adviser') }}">
+                        <i class="fas fa-chart-line"></i>
+                        Farm Adviser
+                    </a>
+                </li>
+                <li><a href="{{ url_for('Weather_Irrigation') }}"><i class="fas fa-cloud-sun-rain"></i>  Weather & Irrigation</a></li>
+                <li><a href="{{ url_for('chatbot') }}"><i class="fas fa-comments"></i> Chat assistant </a></li>
+                <li><a class="active" href="{{ url_for('history') }}"><i class="fas fa-user-tie"></i>  Prediction History</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="tab-container">
+                <button class="tab-button active" onclick="showCropHistory()">Crop Prediction History</button>
+                <button class="tab-button" onclick="showFarmHistory()">Farm Prediction History</button>
+            </div>
+            
+            <!-- Crop Prediction History -->
+            <div id="crop-history">
+                <h2>🌿 Crop Prediction History</h2>
+                <table>
+                    <tr>
+                        <th>Time</th>
+                        <th>Soil pH</th>
+                        <th>Temperature (°C)</th>
+                        <th>Rainfall (mm)</th>
+                        <th>Fertilizer (kg)</th>
+                        <th>Pesticide (kg)</th>
+                        <th>Predicted Crop</th>
+                    </tr>
+                    {% for p in crop_predictions %}
+                    <tr>
+                        <td>{{ p.prediction_time.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        <td>{{ p.soil_ph }}</td>
+                        <td>{{ p.temperature }}</td>
+                        <td>{{ p.rainfall }}</td>
+                        <td>{{ p.fertilizer }}</td>
+                        <td>{{ p.pesticide }}</td>
+                        <td>{{ p.predicted_crop }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            
+            <!-- Farm Prediction History -->
+            <div id="farm-history" style="display: none;">
+                <h2>🌾 Farm Prediction History</h2>
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Crop</th>
+                        <th>Competitor Price</th>
+                        <th>Demand</th>
+                        <th>Supply</th>
+                        <th>Economic</th>
+                        <th>Weather</th>
+                        <th>Seasonal</th>
+                        <th>Trend</th>
+                        <th>Probability</th>
+                        <th>Status</th>
+                    </tr>
+                    {% for p in profit_predictions %}
+                    <tr>
+                        <td>{{ p.id }}</td>
+                        <td>{{ p.crop }}</td>
+                        <td>{{ p.competitor_price }}</td>
+                        <td>{{ p.demand_index }}</td>
+                        <td>{{ p.supply_index }}</td>
+                        <td>{{ p.economic_indicator }}</td>
+                        <td>{{ p.weather_impact }}</td>
+                        <td>{{ p.seasonal_factor }}</td>
+                        <td>{{ p.consumer_trend }}</td>
+                        <td>{{ '%.2f' % p.profit_probability }}</td>
+                        <td>{{ p.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function showCropHistory() {
+            document.getElementById('crop-history').style.display = 'block';
+            document.getElementById('farm-history').style.display = 'none';
+            document.querySelectorAll('.tab-button')[0].classList.add('active');
+            document.querySelectorAll('.tab-button')[1].classList.remove('active');
+        }
+        
+        function showFarmHistory() {
+            document.getElementById('crop-history').style.display = 'none';
+            document.getElementById('farm-history').style.display = 'block';
+            document.querySelectorAll('.tab-button')[0].classList.remove('active');
+            document.querySelectorAll('.tab-button')[1].classList.add('active');
+        }
+    </script>
+</body>
+</html>

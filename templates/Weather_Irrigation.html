@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Weather - FarmAssist</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    .container {
+      display: flex;
+    }
+    .sidebar {
+      width: 250px;
+      background-color: #ffffff;
+      border-right: 1px solid #e0e0e0;
+      height: 100vh;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+    .sidebar h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar h1 i {
+      margin-right: 10px;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin-bottom: 10px;
+    }
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-radius: 5px;
+    }
+    .sidebar ul li a:hover, .sidebar ul li a.active {
+      background-color: #e0f7fa;
+      color: #00796b;
+    }
+    .sidebar ul li a i {
+      margin-right: 10px;
+    }
+    .content {
+      margin-left: 270px;
+      padding: 20px;
+      flex-grow: 1;
+      width: 100%;
+    }
+ 
+ 
+  
+  body {
+    background: linear-gradient(to right, #e9ecec, #ecedf0);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+  
+  .weather-container {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .weather-container input {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+  }
+  
+  .weather-container button {
+    background-color: #74ebd5;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  
+  .location h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .location p {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .weather-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 25px 0;
+  }
+  
+  .temperature h2 {
+    font-size: 48px;
+    color: #333;
+  }
+  
+  .temperature p {
+    font-size: 18px;
+    color: #555;
+  }
+  
+  .details {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+  }
+  
+  .detail-item {
+    background: #f5f7fa;
+    border-radius: 12px;
+    padding: 10px;
+    flex: 1;
+  }
+  
+  .detail-item h4 {
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .detail-item p {
+    font-size: 16px;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .irrigation-section {
+    background: linear-gradient(to right, #e0f7fa, #ffffff);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .irrigation-section h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #006064;
+  }
+  
+  .irrigation-section input {
+    padding: 0.6rem;
+    width: 80%;
+    border: 1px solid #ccc;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .irrigation-section button {
+    background-color: #00bcd4;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .irrigation-section button:hover {
+    background-color: #0097a7;
+  }
+  
+  .irrigation-tip-box {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    color: #004d40;
+    background-color: #8fb6b4;
+    padding: 1rem;
+    border-radius: 1rem;
+  }
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <h1>🌱 FarmAssist</h1>
+      <ul>
+        <li>
+          <a  href="/">
+            <i class="fas fa-tachometer-alt"></i>
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('crop_adviser') }}">
+            <i class="fas fa-seedling"></i>
+            Crop Advisor
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('Farm_adviser') }}">
+            <i class="fas fa-chart-line"></i>
+            Farm Adviser
+          </a>
+        </li>
+        <li>
+          <a class="active" href="{{ url_for('Weather_Irrigation') }}">
+            <i class="fas fa-cloud-sun-rain"></i>
+            Weather & Irrigation
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('chatbot') }}">
+            <i class="fas fa-comments"></i>
+            Chat assistant
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('history') }}">
+            <i class="fas fa-user-tie"></i>
+            Prediction History
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <div class="weather-container">
+        <input type="text" id="locationInput" placeholder="Enter city..." />
+        <button onclick="getWeather()">Get Weather</button>
+
+        <div class="location">
+          <h1 id="cityName">City</h1>
+          <p id="status">Enter a city name above</p>
+        </div>
+
+        <div class="weather-info">
+          <div class="temperature">
+            <h2 id="temperature">--°C</h2>
+            <p id="condition">Condition</p>
+          </div>
+          <div id="weatherEmoji" style="font-size: 64px;">🌍</div>
+        </div>
+
+        <div class="details">
+          <div class="detail-item">
+            <h4>Humidity</h4>
+            <p id="humidity">--%</p>
+          </div>
+          <div class="detail-item">
+            <h4>Wind</h4>
+            <p id="wind">-- km/h</p>
+          </div>
+          <div class="detail-item">
+            <h4>UV Index</h4>
+            <p>--</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="irrigation-section">
+        <h2>Irrigation Tip of the Day 💧</h2>
+        <input type="text" id="cropInput" placeholder="Enter crop name (optional)" />
+        <button onclick="getIrrigationTip()">Get Tip</button>
+        <div class="irrigation-tip-box" id="irrigationTipBox">
+          <p id="irrigationTipText">Your tip will appear here 🌿</p>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const apiKey = "2963737b9amsh735b3c03a7cf54cp1c8263jsn8fe5feff6383";
+    const apiHost = "open-weather13.p.rapidapi.com";
+
+    async function getWeather() {
+      const city = document.getElementById("locationInput").value.trim();
+
+      if (!city) {
+        alert("Please enter a city name.");
+        return;
+      }
+
+      document.getElementById("status").textContent = "Fetching weather data...";
+
+      const weatherUrl = `https://${apiHost}/city/${encodeURIComponent(city)}/EN`;
+
+      try {
+        const weatherResponse = await fetch(weatherUrl, {
+          method: "GET",
+          headers: {
+            "X-Rapidapi-Key": apiKey,
+            "X-Rapidapi-Host": apiHost
+          }
+        });
+
+        if (!weatherResponse.ok) throw new Error("Failed to fetch weather data");
+
+        const weatherData = await weatherResponse.json();
+        const condition = weatherData.weather[0].main.toLowerCase();
+
+        const emojiMap = {
+          "clear": "☀️",
+          "clouds": "☁️",
+          "rain": "🌧️",
+          "thunderstorm": "⛈️",
+          "snow": "❄️",
+          "mist": "🌫️",
+          "fog": "🌁",
+          "drizzle": "🌦️",
+          "haze": "🌤️"
+        };
+
+        document.getElementById("cityName").textContent = weatherData.name;
+        document.getElementById("temperature").textContent = `${weatherData.main.temp}°C`;
+        document.getElementById("humidity").textContent = `${weatherData.main.humidity}%`;
+        document.getElementById("condition").textContent = weatherData.weather[0].description;
+        document.getElementById("weatherEmoji").textContent = emojiMap[condition] || "🌍";
+        document.getElementById("wind").textContent = `${weatherData.wind.speed} km/h`;
+        document.getElementById("status").textContent = "Weather data updated!";
+      } catch (error) {
+        console.error("Error fetching weather data:", error);
+        alert("Failed to retrieve weather data.");
+        document.getElementById("status").textContent = "Error retrieving weather.";
+      }
+    }
+
+    function getIrrigationTip() {
+      const crop = document.getElementById("cropInput").value.trim().toLowerCase();
+
+      const generalTips = [
+        "💧 Use drip irrigation to conserve water.",
+        "🚿 Water early in the morning or late evening to reduce evaporation.",
+        "🌿 Mulching helps retain soil moisture.",
+        "💧 Avoid overwatering – check soil moisture first.",
+        "🚿 Use sprinklers only during low wind conditions."
+      ];
+
+      const cropTips = {
+        "rice": "💧 Keep the field flooded during early growth stages.",
+        "tomato": "🚿 Use drip irrigation to avoid wetting leaves and prevent disease.",
+        "wheat": "💧 Irrigate during crown root initiation and flowering stages.",
+        "sugarcane": "🌿 Provide light but frequent irrigation for better yield.",
+        "cotton": "💧 Avoid excessive irrigation during flowering to prevent boll drop."
+      };
+
+      const tip = cropTips[crop] || generalTips[Math.floor(Math.random() * generalTips.length)];
+      document.getElementById("irrigationTipText").textContent = tip;
+    }
+  </script>
+</body>
+</html>

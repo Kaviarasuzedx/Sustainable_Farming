@@ -1,0 +1,12 @@
+Flask
+base64
+datetime
+flask_sqlalchemy
+io
+joblib
+matplotlib
+numpy
+pandas
+requests
+scikit-learn
+tensorflow
