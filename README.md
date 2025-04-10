@@ -28,7 +28,7 @@ Expected Technical Output: Multiagent framework and SQLite Database for long ter
 ## 🗂️ Project Structure
 
 ```
-Flask-FarmAdviso/
+Sustainable_Farming/
 ├── app.py                            # Main Flask application
 ├── templates/
 │   ├──  index.html                   # Frontend HTML for home page to navigate
