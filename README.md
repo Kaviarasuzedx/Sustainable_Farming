@@ -130,11 +130,11 @@ http://127.0.0.1:5000
 
 ---
 
-## 🖼️ Screenshots (Add your actual images here)
-| Input Form | Result |
-|------------|--------|
-| ![form](screenshots/screenshot1.png) | ![result](screenshots/screenshot2.png) | ![result](screenshots/screenshot3.png) |  ![result](screenshots/screenshot4.png) |
-.
+## 🖼️ Screenshots 
+![Image](https://github.com/user-attachments/assets/576b9644-d625-497d-85ea-650608069fad) 
+![Image](https://github.com/user-attachments/assets/8d0c64f1-5fd6-4327-8c6a-ad0ff120aa3d)
+![Image](https://github.com/user-attachments/assets/e5356bd1-b906-4ef1-af49-9c84f6d35bba)
+![Image](https://github.com/user-attachments/assets/817125da-70ec-4917-a239-363aaea32b31)
 
 ---
 
