@@ -80,7 +80,7 @@ Flask-FarmAdviso/
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/Kaviarasuzedx/Sustainable_Farming.git
+git clone https:https://github.com/Kaviarasuzedx/Sustainable_Farming
 cd Flask-FarmAdviso
 ```
 
